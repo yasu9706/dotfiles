@@ -64,4 +64,9 @@ set tabstop=4
 set shiftwidth=4
 set backspace=2
 set number
+set cursorline
 set incsearch
+set hlsearch
+set smartindent
+set clipboard+=unnamed
+packloadall
