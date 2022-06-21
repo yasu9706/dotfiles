@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/yasu/user'
+let g:netrw_dirhist_3='/home/yasu'
+let g:netrw_dirhist_2='/mnt/c/Users/user/nkc_classes/reqruit'
+let g:netrw_dirhist_1='/mnt/c/Users/user/Dropbox'

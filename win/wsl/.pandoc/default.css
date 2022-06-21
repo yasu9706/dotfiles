@@ -1,0 +1,68 @@
+/* Webサイト用のカスタムCSS */
+
+/* bodyタグ以下を.wrapperで包むこと */
+.js-toc-content {
+    width: 800px;
+    max-width: 800px;
+    float: left;
+}
+
+.js-toc {
+    padding-left: 900px;
+    padding-top: 50px;
+    position: right;
+}
+
+.clear {
+    clear: both;
+}
+
+h1 {
+    font-family: 'Noto Sans JP', sans-serif;
+    /*
+    適用するhtmlファイルのheadに以下を書く
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+     */
+    
+    font-size: 64pt;
+    font-weight: bold;
+    padding: 0 0 0 100px;
+    margin: 0 0 0 0;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-left: black 10px solid;
+    padding: 5px 0px 5px 10px;
+    margin: 100px 5px 45px 20px;
+    background-color: #0000002a;
+    width: 800px;
+}
+
+h2 {
+    font-size: 30pt;
+}
+
+h3 {
+    font-size: 24pt;
+}
+
+h4, h5, h6 {
+    font-size: 20px;
+}
+
+p, ul, ol {
+    font-size: 20px;
+    padding-left: 60px;
+}
+
+code {
+    background-color: #0000002a;
+}
+
+tr {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgba(0, 0, 255, 0.289);
+}
