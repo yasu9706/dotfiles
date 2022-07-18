@@ -35,43 +35,60 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
+# カスタムプロンプト用
+PLAIN='0'
+BALD='1'
+ITALIC='3'
+UNDERLINE='4'
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+FG_BLACK='30'
+FG_RED='31'
+FG_GREEN='32'
+FG_YELLOW='33'
+FG_BLUE='34'
+FG_MAGENTA='35'    # purple
+FG_CYAN='36'       # light blue
+FG_WHITE='37'
+FG_DEFAULT='39'
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
+FG_BLACK_BRIGHT='90'
+FG_RED_BRIGHT='91'
+FG_GREEN_BRIGHT='92'
+FG_YELLOW_BRIGHT='93'
+FG_BLUE_BRIGHT='94'
+FG_MAGENTA_BRIGHT='95'    # purple
+FG_CYAN_BRIGHT='96'       # light blue
+FG_WHITE_BRIGHT='97'
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+BG_BLACK='40m'
+BG_RED='41m'
+BG_GREEN='42m'
+BG_YELLOW='44m'
+BG_BLUE='44m'
+BG_MAGENTA='45m'
+BG_CYAN='46m'
+BG_WHITE='47m'
+BG_DEFAULT='49m'
 
-export PS1='\[\e[0;30;107m\] \u@\h \[\e[0;97;45m\] \w \n\[\e[0;97m\]$ '
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+BG_BLACK_BRIGHT='100m'
+BG_RED_BRIGHT='101m'
+BG_GREEN_BRIGHT='102m'
+BG_YELLOW_BRIGHT='104m'
+BG_BLUE_BRIGHT='104m'
+BG_MAGENTA_BRIGHT='105m'
+BG_CYAN_BRIGHT='106m'
+BG_WHITE_BRIGHT='107m'
+
+## username and hostname
+PS1="\[\e[$FG_BLACK;$BG_WHITE_BRIGHT\] \u@\H "
+
+## working directory
+PS1+="\[\e[$FG_WHITE_BRIGHT;$BG_MAGENTA\] \w "
+
+## prompt
+PS1+="\[\e[$FG_MAGENTA;$BG_DEFAULT\]\[\e[$FG_DEFAULT;$BG_DEFAULT\]\n\$ "
+
+export PS1
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -92,8 +109,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias java='java.exe'
-alias javac='javac.exe'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -122,3 +137,6 @@ TODAY=`date +%m%d`
 if [ ! -e ~/user/Dropbox/$TODAY.md ]; then
     echo "# $TODAY" > ~/user/Dropbox/$TODAY.md
 fi
+
+#history format
+HISTTIMEFORMAT="%Y/%m/%d(%a) %T "
