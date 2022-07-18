@@ -52,6 +52,30 @@ endif
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
+
+" backups
+set backup
+set backupext=.back
+set backupdir=~/.vim/back
+
+" swap
+set swapfile
+set directory=~/.vim/swap
+
+" undo
+set undofile
+set undodir=~/.vim/undo
+
+" statusline
+set laststatus=2
+"set statusline=%f%m%h\ %<|%=\ %8.9l[%p%%]
+
+" open file and move last cursol place
+augroup vimrcEx
+      au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+        \ exe "normal g`\"" | endif
+  augroup END
+
 packloadall
 silent! helptags All
 "colorscheme pencil
